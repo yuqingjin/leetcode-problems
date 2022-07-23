@@ -6,6 +6,7 @@
     # total: multiply them, O(N*K*N*logK)
     
 # Space Complexity: dominate by graph, O(NK)
+# Ref: https://www.youtube.com/watch?v=f17PKE8W2p8
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
