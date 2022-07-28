@@ -6,45 +6,78 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         
-        # 做法1：
+        # 做第三遍
         m, n = len(board), len(board[0])
-        visit = set()
-        
+        directions = [(1,0), (-1,0), (0,1), (0,-1)]
         def dfs(row, col, i):
             
-            # base case1: find the word
-            if i == len(word):
-                return True
-            
-            # base case2: not satisfy the requirement, return
-            if not 0 <= row < m or not 0 <= col < n or board[row][col] != word[i] or (row,col) in visit:
+    # base case:
+            # 先进行筛选
+            if not 0 <= row < m or not 0 <= col < n or board[row][col] != word[i]:
                 return False
             
-            visit.add((row, col))
+            # 再进行进一步确认是否为满足条件的输出
+            # 此条在后面是因为要先筛选，满足上面if条件的，同时也满足本条if条件的，才是需要的输出项
+            if i == len(word)-1:
+                return True
             
-            # if one of the four direction has result True, then we gonna return True
-            # only need one solution for this problem
-            res = dfs(row+1, col, i+1) or \
-                  dfs(row-1, col, i+1) or \
-                  dfs(row, col-1, i+1) or \
-                  dfs(row, col+1, i+1)
-            
-            # after dfs, remove the cell from visited
-            visit.remove((row, col))
-            
-            return res
-            
-        # main func:
+            board[row][col] = "#"
+            for dx, dy in directions:
+                x, y = dx + row, dy + col
+                if 0 <= x < m and 0 <= y < n:
+                    if dfs(x, y, i+1):
+                        return True
+            board[row][col] = word[i]
+                    
+                    
         for i in range(m):
             for j in range(n):
-                if dfs(i, j, 0):
+                if board[i][j] == word[0] and dfs(i, j, 0):
                     return True
                 
         return False
+                    
+
+        
+#         # 做法2：
+#         m, n = len(board), len(board[0])
+#         visit = set()
+        
+#         def dfs(row, col, i):
+            
+#             # base case1: find the word
+#             if i == len(word):
+#                 return True
+            
+#             # base case2: not satisfy the requirement, return
+#             if not 0 <= row < m or not 0 <= col < n or board[row][col] != word[i] or (row,col) in visit:
+#                 return False
+            
+#             visit.add((row, col))
+            
+#             # if one of the four direction has result True, then we gonna return True
+#             # only need one solution for this problem
+#             res = dfs(row+1, col, i+1) or \
+#                   dfs(row-1, col, i+1) or \
+#                   dfs(row, col-1, i+1) or \
+#                   dfs(row, col+1, i+1)
+            
+#             # after dfs, remove the cell from visited
+#             visit.remove((row, col))
+            
+#             return res
+            
+#         # main func:
+#         for i in range(m):
+#             for j in range(n):
+#                 if dfs(i, j, 0):
+#                     return True
+                
+#         return False
         
 
         
-#         做法2：
+#         做法1：
 #         m, n = len(board), len(board[0])
 #         directions = [(-1,0), (1,0), (0,-1), (0,1)]
 
