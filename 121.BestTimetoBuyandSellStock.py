@@ -1,4 +1,5 @@
 # Method: array
+# Baic idea: record the minimum price, compute the profit each time and save the maximum one 
 # Time: O(N)
 # Space: O(N)
 
