@@ -1,5 +1,6 @@
 # Method: two pointers
-# Time: O(N^2) + O(NlogN) = O(N^2)
+# Basic idea: continued with the method using in TwoSum II, we still use Two-Pointer method to solve this pro. To avoid the duplicate, 1. we use i+1 as the start of our left pointer; 2.we use while loop to update the num left pointer pointing to.
+# Time: O(N^2) + O(NlogN) = O(N^2); need one traversal and a nested traversal
 # Space: O(1)
 
 class Solution:
