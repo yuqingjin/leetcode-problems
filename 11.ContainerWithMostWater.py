@@ -1,23 +1,49 @@
-# Method: Two-Pointer
-# Basic idea: shifting the smaller height side, bcs the amoount of water stored is determined by the smaller height side;
-# if we shifting the larger height, it is impossible to get more water
-# when they are the same, it doesnt matter which side to shift
-# Time: O(N)
-# Space:O(1)
+# Method: dp or two-pointer
+# Basic idea: find the leftMax and rightMax to compute the trapped water amount
+# for 2-pointers, we need to shift the lower side of boundary, bcs lower side would determine the amount of water we collect.(the same idea as LC 11.ContainerWithMostWater)
+# Time: O(N); O(N)
+# Space: O(N); O(1)
 
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        l = 0
-        r = len(height)-1
-        max_water = 0
+    def trap(self, height: List[int]) -> int:
         
-        while l < r:
-            cur_water = min(height[l], height[r]) * (r-l)
-            max_water = max(max_water, cur_water)
+#         # Method1: dp
+#         dp = [0] * len(height)
+#         leftMax = height[0]
+#         rightMax = height[-1]
+        
+#         # using leftMax to compute 
+#         for i in range(1, len(height)):
+#             leftMax = max(leftMax, height[i])
+#             dp[i] = leftMax - height[i]
+        
+#         # using rightMax to compute 
+#         for i in range(len(height)-1, 0, -1):
+#             rightMax = max(rightMax, height[i])
+#             # find the smaller amount of them, 
+#             # which is the result considering both leftMax and rightMax
+#             dp[i] = min(dp[i], rightMax - height[i])
             
-            if height[l] < height[r]:
+#         return sum(dp)
+
+    
+    
+        # Method2: Two-pointer
+        l, r = 0, len(height)-1
+        leftMax = height[0]
+        rightMax = height[-1]
+        res = 0
+        
+        # everytime shift the lower side of (leftMax, rightMax)
+        while l < r:
+            if leftMax < rightMax:
                 l += 1
+                res = max(res, res + (leftMax - height[l]))
+                leftMax = max(leftMax, height[l])
+                
             else:
                 r -= 1
-                    
-        return max_water
+                res = max(res, res + (rightMax - height[r]))
+                rightMax = max(rightMax, height[r])
+                
+        return res
