@@ -1,6 +1,7 @@
 # Method: Two-Pointer
 # Basic idea: shifting the smaller height side, bcs the amoount of water stored is determined by the smaller height side;
 # if we shifting the larger height, it is impossible to get more water
+# when they are the same, it doesnt matter which side to shift
 # Time: O(N)
 # Space:O(1)
 
