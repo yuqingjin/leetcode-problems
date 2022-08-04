@@ -1,6 +1,6 @@
 # Method: greedy algorithm
 # Basic Idea: deciding any two adjacent numbers smallest range, and compare it with the most left boundary and the most right boundary
-# Time: O(N)
+# Time: O(NlogN), to sort the array
 # Space: O(1)
     
 class Solution:
