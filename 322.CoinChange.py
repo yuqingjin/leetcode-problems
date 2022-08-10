@@ -5,6 +5,7 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         
+        # 这两个特殊情况也涵盖在下面的for loop中了，也可以省略
         # 这个写在下面的那个前面
         if amount == 0:
             return 0
