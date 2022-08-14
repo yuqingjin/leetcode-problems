@@ -1,6 +1,7 @@
 # Method: hashmap, linked list, left/right pointers
 # T: O(N)
 # S: O(N)/O(1) for slow/fast pointers method
+# fast slow poiter method: first, find the middle of the list; second, reverse the second half; third, merge the two half
 
 # Definition for singly-linked list.
 # class ListNode:
