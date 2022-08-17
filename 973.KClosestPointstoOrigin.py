@@ -1,23 +1,24 @@
-# Method: heapq
-# T: O(N+NlogK)
-# S: O(N)
-
-import heapq
+# Method: heap queue
+# Time: O(N+NlogK)
+# Space: O(n)
+    
+    
+from heapq import *
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        q = []
         
-        heap = []
+        for point in points:
+            x, y = point
+            cur = x**2 + y**2
+            q.append([cur, x, y])
+        
+        heapify(q)
         res = []
         
-        for i, point in enumerate(points):
-            x, y = point[0], point[1]
-            leng = (x**2 + y**2)
-            heap.append((leng, i))
-                
-        print(heap)
-        
         for i in range(k):
-            cur = heapq.heappop(heap)
-            res.append(points[cur[1]])
-        
+            minimum = heappop(q)
+            res.append(minimum[1:3])
+            
+        # print(res)
         return res
