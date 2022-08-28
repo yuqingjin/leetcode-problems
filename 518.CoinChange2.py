@@ -1,4 +1,4 @@
-# Method: dp, 01背包
+# Method: dp, 完全背包（每种硬币数量不限）
 # 求所有组合数，所以遍历顺序为：外层遍历物品，内层遍历背包
 # T: O(m*n), m-len(coins), n-amount
 # S: O(n)
